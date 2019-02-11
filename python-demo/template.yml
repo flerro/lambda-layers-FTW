@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Python demo - Lambda Layers FTW! 
+
+Resources:
+
+  WordcloudFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: wc.handler
+      Timeout: 60
+      MemorySize: 512
+      Runtime: python3.6
+      CodeUri: build/code.zip
+      Layers:
+        - !Ref WordcloudLayer
+      Policies:
+      - S3CrudPolicy:
+           BucketName: !Ref OutputBucket
+      Environment:
+        Variables:
+          OUT_BUCKET: !Ref OutputBucket
+
+  WordcloudLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties: 
+      ContentUri: s3://lambda-layer-ftw-deploy/layer-wordcloud.zip
+      LicenseInfo: MIT
+      RetentionPolicy: Retain
+      CompatibleRuntimes:
+        - python3.6
+
+  OutputBucket:
+    Type: AWS::S3::Bucket

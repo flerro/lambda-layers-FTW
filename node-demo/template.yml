@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Node demo - Lambda Layers FTW! - Serverless on stage \#16
+
+Resources:
+
+  BikeMIFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 15
+      Handler: lambda_bikemi.handler
+      Runtime: nodejs8.10
+      CodeUri: build/code-bikemi.zip
+      Layers:
+        - !Ref BikeSharingLayer
+      Events:
+        GetNearestBikeMI:
+          Type: Api
+          Properties:
+            Path: '/bikemi'
+            Method: get
+
+  MobikeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 15
+      Handler: lambda_mobike.handler
+      Runtime: nodejs8.10
+      CodeUri: build/code-mobike.zip
+      Layers:
+        - !Ref BikeSharingLayer
+      Events:
+        GetNearestBikeMI:
+          Type: Api
+          Properties:
+            Path: '/mobike'
+            Method: get
+
+  BikeSharingLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties: 
+      ContentUri: s3://lambda-layer-ftw-deploy/layer.zip
+      LicenseInfo: MIT
+      RetentionPolicy: Retain
+      CompatibleRuntimes:
+        - nodejs8.10
