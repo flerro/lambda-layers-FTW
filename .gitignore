@@ -3,6 +3,5 @@ node-demo/build
 python-demo/build
 python-demo/venv
 **/deploy.yml
-**/out.png 
 
 **/__pycache__
