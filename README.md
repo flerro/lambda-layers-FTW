@@ -1,6 +1,6 @@
 # Lambda Layers FTW!
 
-Code examples presented at [Serverless on stage #16](https://www.meetup.com/Serverless-Italy/events/258711904/), slides [visible also here](http://www.rolandfg.net/)
+Code examples presented at [Serverless on stage #16](https://www.meetup.com/Serverless-Italy/events/258711904/), slides [available also here](http://www.rolandfg.net/2019/02/12/serverless-meetup-lambda-layers-ftw/)
 
 **DISCLAIMER**: Automated build/deploy scripts require additional tweaking to be used in a real project (e.g. error checking)
 
