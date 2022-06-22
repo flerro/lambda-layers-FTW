@@ -5,7 +5,7 @@ cycler==0.10.0
 get==2018.11.19
 idna==2.8
 kiwisolver==1.0.1
-numpy==1.21.0
+numpy==1.22.0
 Pillow==9.0.1
 post==2018.11.20
 public==2018.11.20
